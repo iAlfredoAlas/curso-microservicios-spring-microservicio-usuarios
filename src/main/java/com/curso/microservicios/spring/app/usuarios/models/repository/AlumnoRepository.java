@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.curso.microservicios.spring.app.usuarios.models.entity.Alumno;
 
-public interface AlumnoReository extends CrudRepository<Alumno, Long> {	
+public interface AlumnoRepository extends CrudRepository<Alumno, Long> {	
 
 }
