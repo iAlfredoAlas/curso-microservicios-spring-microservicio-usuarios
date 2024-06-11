@@ -2,9 +2,14 @@ package com.curso.microservicios.spring.app.usuarios;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import io.github.cdimascio.dotenv.Dotenv;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
+import io.github.cdimascio.dotenv.Dotenv;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+
+@EnableEurekaClient
 @SpringBootApplication
+@EntityScan({"com.curso.microservicios.spring.app.usuarios.models.entity"})
 public class CursoMicroserviciosSpringMicroservicioUsuariosApplication {
 
 	public static void main(String[] args) {
