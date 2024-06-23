@@ -1,17 +1,8 @@
 package com.curso.microservicios.spring.app.usuarios.services;
 
-import java.util.Optional;
-
 import com.curso.microservicios.spring.app.usuarios.models.entity.Alumno;
+import com.curso.microservicios.spring.commons.services.CommonService;
 
-public interface AlumnoService {
+public interface AlumnoService extends CommonService<Alumno> {
 
-	public Iterable<Alumno> findall();
-	
-	public Optional<Alumno> findbyId(Long id);
-	
-	public Alumno save(Alumno alumno);
-	
-	public void deleteById(Long id);
-	
 }
