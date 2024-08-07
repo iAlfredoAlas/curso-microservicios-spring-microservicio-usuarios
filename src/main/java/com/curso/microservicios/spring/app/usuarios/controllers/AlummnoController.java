@@ -5,7 +5,10 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +26,18 @@ import com.curso.microservicios.spring.generic.alumnos.models.entity.Alumno;
 
 @RestController
 public class AlummnoController extends CommonController<Alumno, AlumnoService> {
+
+	@GetMapping("/upload/img/{id}")
+	public ResponseEntity<?> verFoto(@PathVariable Long id) {
+		Optional<Alumno> optAlumno = service.findbyId(id);
+		if (optAlumno.isEmpty() || optAlumno.get().getFoto() == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+		Resource imagen = new ByteArrayResource(optAlumno.get().getFoto());
+		return ResponseEntity.status(HttpStatus.OK)
+				.contentType(MediaType.IMAGE_JPEG)
+				.body(imagen);
+	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<?> editar(@Valid @RequestBody Alumno alumno, BindingResult result, @PathVariable Long id) {
